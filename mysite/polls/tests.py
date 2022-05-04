@@ -155,3 +155,6 @@ class QuestionDetailViewTests(TestCase):
         past_question = create_past_question()
         response = self.view_detail(past_question)
         self.assertContains(response, past_question.question_text)
+
+    def test_dummy(self):
+        self.assertTrue(False)
