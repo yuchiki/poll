@@ -1,3 +1,5 @@
+"""polls の views"""
+
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -7,38 +9,36 @@ from .models import Question, Choice
 
 
 class IndexView(generic.ListView):
+    """ pollsの一覧を表示するview"""
     template_name = "polls/index.html"
     context_object_name = 'latest_question_list'
 
     def get_queryset(self):
         """
-        Return the last fice published questions (not including those set to be published in the future).
+        Return the last five published questions
+        (not including those set to be published in the future).
         """
         return Question.objects.filter(pub_date__lte=timezone.now()) .order_by('-pub_date')[:5]
 
 
 class DetailView(generic.DeleteView):
+    """ 個々のpollsの詳細を表示するview"""
     model = Question
     template_name = 'polls/detail.html'
 
     def get_queryset(self):
-        """
-        Excludes any questions that are not published yet.
-        """
+        """Excludes any questions that are not published yet."""
         return Question.objects.filter(pub_date__lte=timezone.now())
 
 
 class ResultsView(generic.DetailView):
+    """ある質問に対する投票結果を表示するview"""
     model = Question
     template_name = 'polls/results.html'
 
 
-def results(request, question_id):
-    question = get_object_or_404(Question, pk=question_id)
-    return render(request, 'polls/results.html', {'question': question})
-
-
 def vote(request, question_id):
+    """投票の postを受け付ける関数"""
     question = get_object_or_404(Question, pk=question_id)
     try:
         selected_choice = question.choice_set.get(pk=request.POST['choice'])

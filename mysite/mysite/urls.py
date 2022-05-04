@@ -1,3 +1,7 @@
+"""
+全体のurlsを管理するモジュール
+"""
+
 from django.contrib import admin
 from django.urls import include, path
 

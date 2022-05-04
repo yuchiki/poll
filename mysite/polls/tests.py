@@ -1,3 +1,5 @@
+"""test module"""
+
 import datetime
 
 from django.test import TestCase
@@ -8,6 +10,8 @@ from .models import Question
 
 
 class QuestionModelTests(TestCase):
+    """tests for Question Model"""
+
     def test_was_published_recently_with_future_question(self):
         """
         was_published_recently() returns False for questions whose pub_date is in the future.
@@ -39,22 +43,32 @@ def create_question(question_text, days):
     """
     Create a quesiton with the given `question_test` and published the given number of `days`
     offset to now
-    (negative for question publiushed in the passt, positive for questions that have yet to be published).
+    (negative for question publiushed in the pass,
+    positive for questions that have yet to be published).
     """
     time = timezone.now() + datetime.timedelta(days=days)
     return Question.objects.create(question_text=question_text, pub_date=time)
 
 
 def create_future_question():
+    """
+    未来のpub_dateを持つquestionを作成します。
+    """
     return create_question("Future Question", 5)
 
 
 def create_past_question():
+    """
+    過去のpub_dateを持つquesionを作成します。
+    """
     return create_question("Past Question", -5)
 
 
-class QuestionIndexViewTestss(TestCase):
+class QuestionIndexViewTests(TestCase):
+    """tests for Question Index View"""
+
     def view_index(self):
+        """index URLを叩くヘルパー関数"""
         return self.client.get(reverse('polls:index'))
 
     def test_no_questions(self):
@@ -113,11 +127,14 @@ class QuestionIndexViewTestss(TestCase):
 
 
 class QuestionDetailViewTests(TestCase):
+    """ tests for Question Detail view"""
 
     def view_detail(self, question):
+        """ detailページを質問をもとに叩くヘルパー関数"""
         return self.view_detail_with_id(question.id)
 
     def view_detail_with_id(self, question_id):
+        """ detailページを質問IDをもとに叩くヘルパー関数"""
         url = reverse('polls:detail', args=[question_id])
         return self.client.get(url)
 
