@@ -11,5 +11,6 @@ https://docs.djangoproject.com/ja/4.0/intro/tutorial01/ のdjangoのtutorialを�
 2. feature branchを作成する
 3. forkした自分のnamespacesの下へpushする
 4. PRを作成
-5. yuchikiのreviewを受け、approveされる
-6. yuchikiがmergeする
+5. yuchikiをreviewerに追加
+6. yuchikiのreviewを受け、approveされる
+7. yuchikiがmergeする
