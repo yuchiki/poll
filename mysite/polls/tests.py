@@ -46,10 +46,16 @@ def create_question(question_text, days):
 
 
 def create_future_question():
+    """
+    未来のpub_dateを持つquestionを作成します。
+    """
     return create_question("Future Question", 5)
 
 
 def create_past_question():
+    """
+    過去のpub_dateを持つquesionを作成します。
+    """
     return create_question("Past Question", -5)
 
 
@@ -104,7 +110,7 @@ class QuestionIndexViewTestss(TestCase):
         The questions index page may display multiple questions.
         """
         question1 = create_past_question()
-        question2 = create_past_question()
+        question2 = create_past_question()+
         response = self.client.get(reverse('polls:index'))
         self.assertQuerysetEqual(
             response.context['latest_question_list'],
