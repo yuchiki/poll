@@ -14,3 +14,6 @@ https://docs.djangoproject.com/ja/4.0/intro/tutorial01/ のdjangoのtutorialを�
 5. yuchikiをreviewerに追加
 6. yuchikiのreviewを受け、approveされる
 7. yuchikiがmergeする
+
+
+[以下PR練習用docs](docs/practice.md)
