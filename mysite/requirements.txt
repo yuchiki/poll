@@ -1,0 +1,8 @@
+django==4.0.4
+psycopg2
+pytest>=5.4
+pytest-django>=4.5
+pytest-mock>=3.7
+django-stubs>=1.10
+#djangorestframework-stubs>=1.5
+#djangorestframework>=3.12
